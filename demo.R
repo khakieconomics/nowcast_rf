@@ -34,7 +34,7 @@ WA.impute <- rfnowcast(x = end.var, y = exog.vars, frequency = "quarterly", impu
 WA.GSP.index <- rep(NA, nrow(WA.impute)+4)
 WA.GSP.index[1] <- 100
 for(i in 1:3){
-	WA.GSP.index[i+1] <- WA.GSP.index[i]*1.005
+	WA.GSP.index[i+1] <- WA.GSP.index[i]*1#.005
 }
 for(i in 5:length(WA.GSP.index)){
 	WA.GSP.index[i] <- WA.GSP.index[i-4]*(1+WA.impute$x[i-4])
