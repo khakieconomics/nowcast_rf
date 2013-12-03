@@ -30,25 +30,25 @@ WA.impute <- rfnowcast(x = end.var, y = exog.vars, frequency = "quarterly", impu
 
 
 # Back out rough quarterly growth rates from annualised quarterly growth rates
-
-WA.GSP.index <- rep(NA, nrow(WA.impute)+4)
-WA.GSP.index[1] <- 100
-for(i in 1:3){
-	WA.GSP.index[i+1] <- WA.GSP.index[i]*1#.005
-}
-for(i in 5:length(WA.GSP.index)){
-	WA.GSP.index[i] <- WA.GSP.index[i-4]*(1+WA.impute$x[i-4])
-}
-library(mFilter)
-WA.qoq.growth <- WA.GSP.index[-1]/WA.GSP.index[-length(WA.GSP.index)]*100-100
-
+# 
+# WA.GSP.index <- rep(NA, nrow(WA.impute)+4)
+# WA.GSP.index[1] <- 100
+# for(i in 1:3){
+# 	WA.GSP.index[i+1] <- WA.GSP.index[i]*1#.005
+# }
+# for(i in 5:length(WA.GSP.index)){
+# 	WA.GSP.index[i] <- WA.GSP.index[i-4]*(1+WA.impute$x[i-4])
+# }
+# library(mFilter)
+# WA.qoq.growth <- WA.GSP.index[-1]/WA.GSP.index[-length(WA.GSP.index)]*100-100
+# 
 # Deseasonalise data and plot
-WA.qoq.f <- hpfilter(WA.qoq.growth, freq=4)
-plot(WA.qoq.f)
+# WA.qoq.f <- hpfilter(WA.qoq.growth, freq=4)
+# plot(WA.qoq.f)
 
-plot.ts((WA.GSP.index))
+# plot.ts((WA.GSP.index))
 plot.ts(WA.impute)
-plot.ts(WA.qoq.growth)
+# plot.ts(WA.qoq.growth)
 
 
 
